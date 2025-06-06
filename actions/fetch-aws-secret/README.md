@@ -10,3 +10,17 @@ This action allows you to connect to AWS Secret Manager, fetch a secret saved as
   "port": "12345"
 }
 ```
+
+Full example:
+
+```
+...
+    steps:
+      - name: Fetch AWS Secret
+        uses: dywanik/github_actions/fetch-aws-secret@master
+        with:
+          aws_region: "eu-central-1"
+          account_id: "11111111"
+          secret_name: "secret_in_AWS"
+...
+```
