@@ -1,0 +1,24 @@
+name: install-robot-framework
+description: "This action installs Robot framework"
+inputs:
+  requirements_file:
+    description: "Name of the requirements file"
+    required: false
+    default: "requirements.txt"
+runs:
+  using: "composite"
+  steps:
+    - name: Check if Python is installed
+      shell: bash
+      run: |
+        if ! command -v python &>/dev/null; then
+          echo "Error: Python is not installed." >&2
+          exit 1
+        fi
+    - name: Setup Robot
+      shell: bash
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+        python -m pip install --upgrade pip
+        python -m pip install -r ${{ inputs.requirements_file }}
