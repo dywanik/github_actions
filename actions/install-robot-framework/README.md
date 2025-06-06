@@ -1,20 +1,13 @@
-### fetch-aws-secret.yaml
+### install-robot-framework.yaml
 
-This action allows you to connect to AWS Secret Manager, fetch a secret saved as a JSON file, extract credentials and use them, e.g., to connect to a database. All data is stored within variables which means they are not exposed. Keep in mind that if you use `::add-mask::` the credentials will be masked. It means you will not be able to use them after masking, none the less, use it in the next action as an output.
-
-```
-{
-  "username": "your_username",
-  "password": "y0uR_pa$$w0rd",
-  "host": "your-host.com",
-  "port": "12345"
-}
-```
+This action installs Robot framework. Python is required to install and run Robot. You can use a requirements file (`requirements.txt` is used by default).
 
 ```
 ...
     steps:
-      - name: Reveal GitHub Secret
-        uses: dywanik/github_actions/reveal-secret@master
+      - name: Install Robot Framework
+        uses: dywanik/github_actions/install-robot-framework@master
+        with:
+          requirements_file: your_requirements_file.txt
 ...
 ```
